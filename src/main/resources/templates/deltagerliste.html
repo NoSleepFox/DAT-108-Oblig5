@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/simple.css" />
+    <title>Deltagerliste</title>
+  </head>
+  <body>
+    <!-- Viser hvem som er logget inn -->
+    <p>
+      Logget inn som:
+      <span th:text="${session.innloggetBruker.mobil}"></span> /
+      <span th:text="${session.innloggetBruker.fulltNavn}"></span>
+    </p>
+
+    <h2>Deltagerliste</h2>
+
+    <table>
+      <tr>
+        <th>Kjønn</th>
+        <th align="left">Navn</th>
+        <th align="left">Mobil</th>
+      </tr>
+
+      <!-- Går gjennom alle deltagerne -->
+      <tr
+        th:each="deltager : ${deltagere}"
+        th:style="${deltager.mobil == session.innloggetBruker.mobil}
+                ? 'background-color: #DCEBDD' : ''"
+      >
+        <td th:text="${deltager.kjonn}"></td>
+        <td th:text="${deltager.fulltNavn}"></td>
+        <td th:text="${deltager.mobilFormatert}"></td>
+      </tr>
+    </table>
+    <br />
+
+    <!-- knapp for utlogging -->
+    <form th:action="@{/utlogging}" method="post">
+      <button type="submit">Logg ut</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/simple.css" />
+    <title>Påmeldingsbekreftelse</title>
+  </head>
+  <body>
+    <h2>Påmeldingsbekreftelse</h2>
+    <p>Påmeldingen er mottatt for</p>
+
+    <p style="margin-left: 1rem">
+      <span th:text="${deltager.fornavn}">Fornavn</span><br />
+      <span th:text="${deltager.etternavn}">Etternavn</span><br />
+      <span th:text="${deltager.mobil}">12345678</span><br />
+      <span th:text="${deltager.kjonn}">mann</span>
+    </p>
+
+    <a th:href="@{/deltagerliste}">Gå til deltagerlisten</a>
+  </body>
+</html>
