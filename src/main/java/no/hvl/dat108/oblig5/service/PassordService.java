@@ -1,4 +1,4 @@
-package no.hvl.dat108.oblig4.service;
+package no.hvl.dat108.oblig5.service;
 
 import jakarta.xml.bind.DatatypeConverter;
 
@@ -20,7 +20,7 @@ import java.security.spec.InvalidKeySpecException;
 
 public class PassordService {
 
-	private final static String DEFAULT_SALT = "ABCD";
+    private final static String DEFAULT_SALT = "ABCD";
 
     /**
      * Lager et hashet passord for passordKlartekst ved å bruke DEFAULT_SALT.
@@ -33,22 +33,22 @@ public class PassordService {
     }
 
     /**
-	 * Sjekker om et passord matcher et hashet passord tidligere generert av
+     * Sjekker om et passord matcher et hashet passord tidligere generert av
      * lagHashetPassord(...).
-	 * 
-	 * @param passord - Passord som skal sjekkes
-	 * @param hashetPassord - Det "lagrete" hashede passordet
-	 * @return om passordet matcher
-	 */
-	public static boolean erPassordKorrekt(
-			String passord, String hashetPassord) {
-		
-		if (passord == null || hashetPassord == null) { //Burde validert skikkelig!!
-			throw new IllegalArgumentException();
-		}
-		return hashetPassord.equals(lagHashetPassord(passord));
-	}
-	
+     * 
+     * @param passord       - Passord som skal sjekkes
+     * @param hashetPassord - Det "lagrete" hashede passordet
+     * @return om passordet matcher
+     */
+    public static boolean erPassordKorrekt(
+            String passord, String hashetPassord) {
+
+        if (passord == null || hashetPassord == null) { // Burde validert skikkelig!!
+            throw new IllegalArgumentException();
+        }
+        return hashetPassord.equals(lagHashetPassord(passord));
+    }
+
     /**
      * @return et tilfeldig generert 16 bytes salt ved å bruke SHA1PRNG
      */
@@ -68,9 +68,9 @@ public class PassordService {
      * Genererer en kryptografisk hash for gitt passord og salt.
      *
      * Algoritmen som brukes er PBKDF2WithHmacSHA1
-     * 	- PBKDF2: Password-Based-Key-Derivation-Function
-     *  - WithHmac: HMAC står for Keyed-Hash Message Authentication Code
-     *  - SHA1: SHA1 hashing-algoritme
+     * - PBKDF2: Password-Based-Key-Derivation-Function
+     * - WithHmac: HMAC står for Keyed-Hash Message Authentication Code
+     * - SHA1: SHA1 hashing-algoritme
      *
      * Det itereres 1000 ganger.
      * Output fra denne algoritmen er 256 bits, dvs. 32 bytes.
@@ -85,7 +85,7 @@ public class PassordService {
      */
     private static String hashMedSalt(String passord, String salt) {
 
-        if (passord == null || salt == null) { //Burde validert skikkelig!!
+        if (passord == null || salt == null) { // Burde validert skikkelig!!
             throw new IllegalArgumentException();
         }
 

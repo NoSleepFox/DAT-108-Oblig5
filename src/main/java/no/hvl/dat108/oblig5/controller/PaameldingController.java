@@ -1,14 +1,14 @@
-package no.hvl.dat108.oblig4.controller;
+package no.hvl.dat108.oblig5.controller;
 
 import org.springframework.ui.Model;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import no.hvl.dat108.oblig4.model.Deltager;
-import no.hvl.dat108.oblig4.model.DeltagerSkjema;
-import no.hvl.dat108.oblig4.model.Feilmeldinger;
-import no.hvl.dat108.oblig4.service.DeltagerDbService;
-import no.hvl.dat108.oblig4.service.LogginnService;
-import no.hvl.dat108.oblig4.service.PassordService;
+import no.hvl.dat108.oblig5.model.Deltager;
+import no.hvl.dat108.oblig5.model.DeltagerSkjema;
+import no.hvl.dat108.oblig5.model.Feilmeldinger;
+import no.hvl.dat108.oblig5.service.DeltagerDbService;
+import no.hvl.dat108.oblig5.service.LogginnService;
+import no.hvl.dat108.oblig5.service.PassordService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PaameldingController {
+
+	private final DeltagerDbService deltagerDbService;
+
+	public PaameldingController(DeltagerDbService deltagerDbService) {
+		this.deltagerDbService = deltagerDbService;
+	}
 
 	/*
 	 * GET /paamelding - Viser påmeldingsskjema vhja av aktuelt view
@@ -56,7 +62,7 @@ public class PaameldingController {
 
 		Deltager deltager = skjema.lagDeltager(hashetPassord);
 
-		DeltagerDbService.lagreDeltager(deltager);
+		deltagerDbService.lagreDeltager(deltager);
 		LogginnService.loggInnBruker(request, deltager);
 
 		ra.addFlashAttribute("deltager", deltager);
@@ -104,7 +110,7 @@ public class PaameldingController {
 		} else if (!skjema.getPassord().equals(skjema.getPassordRepetert())) {
 			melding = Feilmeldinger.FEIL_REPETERT_PASSORD_MLD;
 
-		} else if (DeltagerDbService.erDeltagerPaameldt(skjema.getMobil())) {
+		} else if (deltagerDbService.erDeltagerPaameldt(skjema.getMobil())) {
 			melding = Feilmeldinger.ALLEREDE_PAAMELDT_MLD;
 		}
 		return melding;

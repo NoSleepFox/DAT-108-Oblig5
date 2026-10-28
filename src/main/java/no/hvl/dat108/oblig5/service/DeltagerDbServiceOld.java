@@ -1,18 +1,17 @@
-package no.hvl.dat108.oblig4.service;
+package no.hvl.dat108.oblig5.service;
 
-import no.hvl.dat108.oblig4.model.Deltager;
+import no.hvl.dat108.oblig5.model.Deltager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeltagerDbService {
+public class DeltagerDbServiceOld {
 
     private static List<Deltager> deltagerliste = new ArrayList<>(List.of(
-        new Deltager("12345678", "dummyhash", "Knut", "Knutsen", "mann"),
-        new Deltager("23456789", "dummyhash", "Knut", "Olsen", "mann"),
-        new Deltager("34567890", "dummyhash", "Anne", "Annesen", "kvinne"),
-        new Deltager("11223344", "dummyhash", "Lise", "Hansen", "kvinne")
-    ));
+            new Deltager("12345678", "dummyhash", "Knut", "Knutsen", "mann"),
+            new Deltager("23456789", "dummyhash", "Knut", "Olsen", "mann"),
+            new Deltager("34567890", "dummyhash", "Anne", "Annesen", "kvinne"),
+            new Deltager("11223344", "dummyhash", "Lise", "Hansen", "kvinne")));
 
     /**
      * @param mobil
@@ -41,11 +40,12 @@ public class DeltagerDbService {
      */
     public static boolean erDeltagerPaameldt(String mobil) {
 
-        return finnDeltagerMedMobil(mobil) !=null;
+        return finnDeltagerMedMobil(mobil) != null;
     }
 
     /**
      * Lagrer (melder på) en deltager ved å legge til i listen.
+     * 
      * @param deltager
      */
     public static void lagreDeltager(Deltager deltager) {

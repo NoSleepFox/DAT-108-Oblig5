@@ -10,10 +10,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>no.hvl.dat108</groupId>
-    <artifactId>oblig4-springmvc</artifactId>
+    <artifactId>oblig5-springmvc</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>oblig4-springmvc</name>
-    <description>oblig4-springmvc</description>
+    <name>oblig5-springmvc</name>
+    <description>oblig5-springmvc</description>
     <url/>
     <licenses>
         <license/>
@@ -48,6 +48,17 @@
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+
+        <!-- postgresql dependency -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
 
